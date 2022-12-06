@@ -68,3 +68,16 @@ class TodoRepo:
             description=todo.description,
             is_done=True,
         )
+
+    def delete(self, *, id: str):
+        # check if todo exists
+        todo = self.get_by_id(id)
+
+        if todo is None:
+            return None
+
+        # delete the todo
+        self.client.execute("DELETE FROM todos WHERE id = ?", [id])
+        self.client.commit()
+
+        return todo

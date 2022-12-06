@@ -72,3 +72,20 @@ class TodoService:
 
         print("\nTodo marked as done!\n")
         print(todo.map_to_json(), "\n")
+
+    def delete(self):
+        print("=== DELETE TODO ===")
+        # @param id: the id of the todo
+        id = input("Enter todo id: ")
+
+        print(f"\nDeleting todo with id {id} from database...\n")
+
+        todo = self.repo.delete(id=id)
+
+        if todo is None:
+            print("\nTodo not found!")
+            print("")
+            return
+
+        print("\nTodo deleted!\n")
+        print(todo.map_to_json(), "\n")

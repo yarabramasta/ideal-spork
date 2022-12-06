@@ -14,7 +14,7 @@ def main():
     # initialize services
     service = TodoService(TodoRepo(client))
 
-    choice_msg = "1. Get all todos\n2. Get todo by id\n3. Add new todo\n4. Mark todo as done\n5. Exit\n\nChoose service: "
+    choice_msg = "1. Get all todos\n2. Get todo by id\n3. Add new todo\n4. Mark todo as done\n5. Delete todo\n6. Exit\n\nChoose service: "
 
     # get user input
     choice = int(input(choice_msg))
@@ -36,6 +36,10 @@ def main():
         # update todo.is_done to True
         elif choice == 4:
             service.mark_as_done()
+
+        # delete todo
+        elif choice == 5:
+            service.delete()
 
         else:
             # invalid choice
