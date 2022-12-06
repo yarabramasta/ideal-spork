@@ -14,13 +14,13 @@ def main():
     # initialize services
     service = TodoService(TodoRepo(client))
 
-    choice_msg = "1. Get all todos\n2. Get todo by id\n3. Exit\n\nChoose service: "
+    choice_msg = "1. Get all todos\n2. Get todo by id\n3. Add new todo\n4. Mark todo as done\n5. Exit\n\nChoose service: "
 
     # get user input
     choice = int(input(choice_msg))
     print("")
 
-    while choice != 3:
+    while choice != len(choice_msg.split(".")) - 1:
         # get all todos if user choose 1
         if choice == 1:
             service.get_all()
@@ -28,6 +28,14 @@ def main():
         # get todo by id if user choose 2
         elif choice == 2:
             service.get_by_id()
+
+        # create todo
+        elif choice == 3:
+            service.save()
+
+        # update todo.is_done to True
+        elif choice == 4:
+            service.mark_as_done()
 
         else:
             # invalid choice

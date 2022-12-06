@@ -30,5 +30,41 @@ class TodoRepo:
         if data is None:
             return None
 
-        print("fetching")
-        print(data)
+        return Todo(*data)
+
+    # save todo to the database
+    def create(self, *, title: str, description: str | None = None):
+        # instantiate the todo
+        todo = Todo(
+            id=self._id(),
+            title=title,
+            description=description,
+        )
+
+        # prepare the sql query and statements
+        query, statements = todo.map_for_save()
+
+        # execute the query
+        self.client.execute(f"INSERT INTO todos {query}", statements)
+        self.client.commit()
+
+        # return the todo
+        return todo
+
+    def mark_as_done(self, *, id: str):
+        # check if todo exists
+        todo = self.get_by_id(id)
+
+        if todo is None:
+            return None
+
+        # update the todo
+        self.client.execute("UPDATE todos SET is_done = 1 WHERE id = ?", [id])
+        self.client.commit()
+
+        return Todo(
+            id=todo.id,
+            title=todo.title,
+            description=todo.description,
+            is_done=True,
+        )

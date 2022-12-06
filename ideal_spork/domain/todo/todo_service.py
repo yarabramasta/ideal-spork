@@ -9,7 +9,7 @@ class TodoService:
 
     def get_all(self):
         print("=== GET ALL TODOS ===")
-        print("Getting all todos from database...")
+        print("\nGetting all todos from database...\n")
 
         todos = self.repo.get_all()
 
@@ -26,10 +26,10 @@ class TodoService:
 
     def get_by_id(self):
         print("=== GET TODO BY ID ===")
-
+        # @param id: the id of the todo
         id = input("Enter todo id: ")
 
-        print(f"Getting todo with id {id} from database...")
+        print(f"\nGetting todo with id {id} from database...\n")
 
         todo = self.repo.get_by_id(id)
 
@@ -39,4 +39,36 @@ class TodoService:
             return
 
         # output the todo to console in json format if todo is not None
+        print(todo.map_to_json(), "\n")
+
+    def save(self):
+        print("=== CREATE NEW TODO ===")
+
+        # @param title: the title of the todo
+        title = input("Enter todo title: ")
+        # @param description: the description of the todo
+        description = input("Enter todo description: ")
+
+        print(f"\nSaving todo with title {title} to database...\n")
+
+        todo = self.repo.create(title=title, description=description)
+
+        print("\nTodo saved!\n")
+        print(todo.map_to_json(), "\n")
+
+    def mark_as_done(self):
+        print("=== MARK TODO AS DONE ===")
+        # @param id: the id of the todo
+        id = input("Enter todo id: ")
+
+        print(f"\nMarking todo with id {id} as done...\n")
+
+        todo = self.repo.mark_as_done(id=id)
+
+        if todo is None:
+            print("\nTodo not found!")
+            print("")
+            return
+
+        print("\nTodo marked as done!\n")
         print(todo.map_to_json(), "\n")
