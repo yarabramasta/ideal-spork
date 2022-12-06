@@ -4,5 +4,5 @@ Tugas DASPRO.
 Aplikasi To-Do via CLI.
 
 # Specs
-- [ ] Integrasi dengan SQLite
-- [ ] Opsi user untuk CRUD To-Do
+- [x] Integrasi dengan SQLite
+- [x] Opsi user untuk CRUD To-Do
