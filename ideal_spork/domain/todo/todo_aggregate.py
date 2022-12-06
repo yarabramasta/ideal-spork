@@ -3,6 +3,7 @@ import json
 
 # Represents a todo item in the database
 class Todo:
+    # @param id: the id of the todo
     # @param title: the title of the todo
     # @param description: the description of the todo
     # @param is_done: the status of the todo default is False
@@ -20,7 +21,7 @@ class Todo:
 
         pass
 
-    # sql table for todos
+    # represents sql table for todo collection
     @staticmethod
     def get_tb() -> str:
         return """
@@ -33,19 +34,16 @@ class Todo:
         """
 
     # map the Todo object to sql statement
-    def map_to_sql(self) -> dict:
-        # prepare the arguments
+    def map_for_save(self) -> tuple[str, list]:
+        # prepare the statements
         _desc = self.description if self.description is not None else ""
         _is_done = 1 if self.is_done else 0
 
-        # map the arguments into sql statement
-        map = {
-            "insert": "('title', 'description', 'is_done', 'id') VALUES (?,?,?,?)",
-            "update": "SET title = ?, description = ?, is_done = ? WHERE id = ?",
-            "data": [self.title, _desc, _is_done, self.id],
-        }
-
-        return map
+        # return the sql query and prepared statements
+        return (
+            "('title', 'description', 'is_done', 'id') VALUES (?,?,?,?)",
+            [self.title, _desc, _is_done, self.id],
+        )
 
     # output todo properties to console
     def map_to_json(self):

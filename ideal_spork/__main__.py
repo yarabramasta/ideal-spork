@@ -14,21 +14,32 @@ def main():
     # initialize services
     service = TodoService(TodoRepo(client))
 
+    choice_msg = "1. Get all todos\n2. Get todo by id\n3. Exit\n\nChoose service: "
+
     # get user input
-    choice = int(input("1. Get all todos\n2. Exit\n\nChoose service: "))
+    choice = int(input(choice_msg))
     print("")
 
-    while choice != 2:
+    while choice != 3:
+        # get all todos if user choose 1
         if choice == 1:
             service.get_all()
+
+        # get todo by id if user choose 2
+        elif choice == 2:
+            service.get_by_id()
+
         else:
+            # invalid choice
             print("Invalid choice!")
 
         print("=== TODO APP ===")
-        choice = int(input("1. Get all todos\n2. Exit\n\nChoose service: "))
+        choice = int(input(choice_msg))
         print("")
 
     pass
+
+    client.close()
 
 
 if __name__ == "__main__":
