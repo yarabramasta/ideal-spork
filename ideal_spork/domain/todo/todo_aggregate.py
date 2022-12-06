@@ -40,13 +40,13 @@ class Todo:
 
         # map the arguments into sql statement
         map = {
-            "insert": "('title', 'description', 'is_done') VALUES (?,?,?)",
+            "insert": "('title', 'description', 'is_done', 'id') VALUES (?,?,?,?)",
             "update": "SET title = ?, description = ?, is_done = ? WHERE id = ?",
-            "data": [self.title, _desc, _is_done],
+            "data": [self.title, _desc, _is_done, self.id],
         }
 
         return map
 
     # output todo properties to console
-    def map_to_json(self) -> None:
-        print(json.dumps(self.__dict__, indent=2))
+    def map_to_json(self):
+        return json.dumps(self.__dict__, indent=2)
