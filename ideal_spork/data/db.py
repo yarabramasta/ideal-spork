@@ -51,13 +51,10 @@ def seed(client: Connection) -> None:
         # insert todos
         for todo in mock_todos:
             # map the todo object to sql statement
-            query = todo.map_for_save()
+            query, stmt = todo.map_for_save()
 
             # create seed data
-            client.execute(
-                f"INSERT INTO todos {query['insert']}",
-                query["data"],
-            )
+            client.execute(f"INSERT INTO todos {query}", stmt)
 
         print("Seeding data done!")
 

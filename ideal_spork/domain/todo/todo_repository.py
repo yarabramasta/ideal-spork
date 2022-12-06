@@ -5,7 +5,7 @@ from .todo_aggregate import Todo
 
 # Persistence layer for Todo using sqlite3
 # @param client: the sqlite3 connection
-class TodoRepo:
+class TodoRepository:
     def __init__(self, client: Connection):
         self.client = client
 

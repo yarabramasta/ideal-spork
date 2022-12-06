@@ -1,10 +1,10 @@
-from .todo_repo import TodoRepo
+from .todo_repository import TodoRepository
 
 
 # Access layer for Todo business logic inside domain
 # @param repo: the TodoRepo instance
 class TodoService:
-    def __init__(self, repo: TodoRepo):
+    def __init__(self, repo: TodoRepository):
         self.repo = repo
 
     def get_all(self):

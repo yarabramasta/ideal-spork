@@ -1,7 +1,7 @@
 ### code by yarabramasta<yarabram111@gmail.com> ###
 
 from .data.db import db_conn, migration
-from .domain.todo import TodoRepo, TodoService
+from .domain.todo import TodoRepository, TodoService
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
     print("=== TODO APP ===")
 
     # initialize services
-    service = TodoService(TodoRepo(client))
+    service = TodoService(TodoRepository(client))
 
     choice_msg = "1. Get all todos\n2. Get todo by id\n3. Add new todo\n4. Mark todo as done\n5. Delete todo\n6. Exit\n\nChoose service: "
 
