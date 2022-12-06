@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ideal-spork"
+name = "ideal_spork"
 version = "0.1.0"
 description = ""
 authors = ["yarabramasta <yarabram111@gmail.com>"]
@@ -10,6 +10,8 @@ packages = [{include = "ideal_spork"}]
 python = "^3.10"
 pysqlite3 = "^0.4.8"
 
+[tool.poetry.scripts]
+ideal_spork = "ideal_spork.__main__:main"
 
 [build-system]
 requires = ["poetry-core"]
