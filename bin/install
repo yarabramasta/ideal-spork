@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+source venv/bin/activate
+
+# Make dist directory
+mkdir dist
+cd dist
+
+# Download the latest version of release from github
+curl -L https://github.com/yarabramasta/ideal-spork/archive/refs/tags/v0.1.0.tar.gz
+
+# Unpack with tarball
+tar -xzf ./ideal_spork-v0.1.0.tar.gz
+
+# Install with pip
+pip -m install ./ideal-spork-0.1.0/ideal_spork-0.1.0.tar.gz
