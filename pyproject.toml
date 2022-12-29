@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "ideal_spork"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.8"
 pysqlite3 = "^0.4.8"
 
 [tool.poetry.scripts]
